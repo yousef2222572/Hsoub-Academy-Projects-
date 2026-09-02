@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>articles</title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <div id="articles_conte">
+
+
+        <h1>django articles </h1>
+        <h2>title : "{{ object.title }}"</h2>
+
+        <ul>
+            <li>
+                <span class="content">content</span> :
+                "{{ object.content }}"
+            </li>
+
+            <li>
+                <span class="content">name</span>
+                {{ object.author.name }}
+            </li>
+
+            <li>
+                <span class="content">email</span>
+                {{ object.author.email }}
+            </li>
+
+            {% for tag in object.tags.all %}
+                <li>
+                    <span class="content">tag name</span>
+                    {{ tag.name }}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    <style>
+        #articles_conte{
+            position: absolute;
+            width: auto;
+            height: auto;
+            padding: 20px;
+            left: 0%;
+            top: 0%;
+            background-color: orange;
+            border-radius:20px ;
+
+        }
+        .content{
+            font-size: 22px;
+        }
+
+    </style>
+    
+</body>
+</html>

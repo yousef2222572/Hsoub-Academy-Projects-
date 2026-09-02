@@ -1,0 +1,5 @@
+print("name: yousef")
+print('===========')
+print("age:14")
+print('degree:98')
+print('countries:')

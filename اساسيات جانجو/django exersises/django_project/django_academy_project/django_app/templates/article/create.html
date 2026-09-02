@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+{% block content %}
+
+    <h1>create articles</h1>
+
+
+    <form action="/djangoapp/articles/create" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-success" value="create">
+
+    </form>
+
+
+{% endblock content %}
+    

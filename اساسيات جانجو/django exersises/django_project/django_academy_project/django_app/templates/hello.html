@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hello world from template</h1>
+    <h5>hello {% if name %} {{name}} {% else %} world! {% endif %} </h5>
+    <h5>hello {% if names %}
+         {% for name in names %} 
+            {{name}}
+         {% endfor %}
+        {% else %} sorry cant read the names list {% endif %} </h5>
+    <h3>{{ 'hsoup academy'|title }}</h3>
+    <h3></h3>
+    <h3></h3>
+    <h3></h3>
+    
+</body>
+</html>

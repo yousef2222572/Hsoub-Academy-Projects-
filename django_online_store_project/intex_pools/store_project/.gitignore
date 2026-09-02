@@ -1,0 +1,6 @@
+db.sqlite3
+.env
+.venv/
+*.pyc
+secret_keys.env
+*.env

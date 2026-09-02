@@ -1,0 +1,18 @@
+# Environment files
+.env
+*.env
+secret_keys.env
+
+# Optional: common local secrets/config files
+*.pem
+*.key
+*.crt
+__pycache__/
+.DS_Store
+venv/
+._*
+# Local secret files
+تطبيقات عملية باستخدام بايثون/google/new_keys.json
+تطبيقات عملية باستخدام بايثون/google/keys.json
+تطبيقات عملية باستخدام بايثون/email_sends/send_email.py
+تطبيقات عملية باستخدام بايثون/email_sends/send_remember_emails.py

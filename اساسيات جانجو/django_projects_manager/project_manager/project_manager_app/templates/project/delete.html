@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<form method="post">
+    <div class="sure_ms">are you sure you want to delete {{project.title}}</div>
+    {% csrf_token %}
+
+    {{form}}
+
+    <input  id="submit" type="submit" value="delete"/>
+
+
+</form>
+
+
+
+
+
+
+<style>
+    .sure_ms{
+        position: relative;
+        color: white;
+        width: auto;
+        left: 17vw;
+        top: 10vh;
+        font-size: 50px;
+
+    }
+    #submit{
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        left: 45%;
+        top: 45vh;
+        border-radius: 14px;
+        border-color: white;
+    }
+    #submit:hover{
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        left: 45%;
+        top: 45vh;
+        border-radius: 14px;
+        background-color: rgb(157, 157, 157);
+    }
+
+    
+</style>
+
+
+{% endblock %}

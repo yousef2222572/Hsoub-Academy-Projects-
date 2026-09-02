@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" class="h-100" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <title>projects manager</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
+    </head>
+    <body class="d-flex flex-column h-100 pg-light">
+        
+        {% include 'partials/header.html' %}
+        
+
+        <main class="flex-shrink-0" >
+            <div class="container mt-5">
+
+                {% block content %}
+                {% endblock %}
+
+            </div>
+        </main>
+        
+
+            
+        {% include 'partials/footer.html' %}
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
+            crossorigin="anonymous">
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,132 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" class="h-100" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>متجر Intex</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script defer src="{% static 'js/830.66d67bb4.js' %}"></script>
+  <script defer src="{% static 'js/app.2fe33112.js' %}"></script>
+  <link href="{% static 'css/830.css' %}" rel="stylesheet">
+  <link href="{% static 'css/app.css' %}" rel="stylesheet">
+  <link
+  rel="stylesheet"href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    {% include 'partials/header.html' %}
+
+  <main>
+    {% block content %}
+      {% endblock %}
+  </main>
+    {% include 'partials/footer.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/stripe.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+</body>
+
+</html>
+<style>
+  .btn-color {
+    background-color: #0066B3;
+    border-color: #0066B3;
+    color: white;
+}
+  .btn-primary,
+  .btn-secondary,
+  .btn-color {
+    background-color: #0066B3 !important;
+    border-color: #0066B3 !important;
+    color: white !important;
+  }
+
+  .btn-outline-dark,
+  .btn-outline-primary {
+    background-color: #0066B3 !important;
+    border-color: #0066B3 !important;
+    color: white !important;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus,
+  .btn-secondary:hover,
+  .btn-secondary:focus,
+  .btn-outline-dark:hover,
+  .btn-outline-dark:focus,
+  .btn-outline-primary:hover,
+  .btn-outline-primary:focus,
+  .btn-color:hover,
+  .btn-color:focus {
+    background-color: #00518f !important;
+    border-color: #00518f !important;
+    color: white !important;
+  }
+
+
+.white-color {
+    color: white !important;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #2c78b3;
+    color: white !important;
+}
+
+.pagination .page-link {
+  background-color: transparent !important;
+  border-color: #0066B3 !important;
+  color: #0066B3 !important;
+}
+
+.pagination .page-link:hover,
+.pagination .page-link:focus {
+  background-color: #0066B3 !important;
+  color: white !important;
+}
+
+.pagination .disabled .page-link {
+  background-color: transparent !important;
+  border-color: #adb5bd !important;
+  color: #adb5bd !important;
+}
+
+.header-original-button.btn-secondary {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+}
+
+.header-original-button.btn-outline-dark {
+  background-color: transparent !important;
+  border-color: #212529 !important;
+  color: #212529 !important;
+}
+
+.header-original-button.btn-outline-dark:hover,
+.header-original-button.btn-outline-dark:focus {
+  background-color: #212529 !important;
+  border-color: #212529 !important;
+  color: white !important;
+}
+
+.auth-button {
+  background-color: #0066B3 !important;
+  border-color: #0066B3 !important;
+  color: white !important;
+}
+
+.auth-button:hover,
+.auth-button:focus {
+  background-color: #00518f !important;
+  border-color: #00518f !important;
+  color: white !important;
+}
+</style>

@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-08 03:24+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: project_manager_app/forms.py:20 project_manager_app/models.py:13
+#: project_manager_app/models.py:14
+msgid "Category"
+msgstr "التصنيف"
+
+#: project_manager_app/forms.py:21
+msgid "status"
+msgstr "الحالة"
+
+#: project_manager_app/forms.py:22
+msgid "title"
+msgstr "العنوان"
+
+#: project_manager_app/models.py:19
+msgid "Pending"
+msgstr "قيد التنفيذ"
+
+#: project_manager_app/models.py:20
+msgid "Compelted"
+msgstr "مكتمل"
+
+#: project_manager_app/models.py:21
+msgid "Postponed"
+msgstr "معلق"
+
+#: project_manager_app/models.py:22
+msgid "Canceled"
+msgstr "ملغى"
+
+#: project_manager_app/models.py:41 project_manager_app/models.py:42
+#, fuzzy
+#| msgid "New Project"
+msgid "Project"
+msgstr "مشروع"
+
+#: project_manager_app/models.py:54 project_manager_app/models.py:55
+msgid "Task"
+msgstr "مهمة"
+
+#: project_manager_app/templates/partials/header.html:5
+msgid "project management"
+msgstr "مدير المشاريع"
+
+#: project_manager_app/templates/partials/header.html:12
+msgid "Home"
+msgstr "الرئيسية"
+
+#: project_manager_app/templates/partials/header.html:36
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+#: project_manager_app/templates/partials/header.html:45
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#: project_manager_app/templates/partials/header.html:61
+msgid "Search"
+msgstr "بحث "
+
+#: project_manager_app/templates/partials/header.html:77
+msgid "sign in "
+msgstr "تسجيل الدخول"
+
+#: project_manager_app/templates/partials/header.html:80
+msgid "register"
+msgstr "انشاء حساب"
+
+#: project_manager_app/templates/project/create.html:10
+msgid "New Project"
+msgstr "مشروع جديد"
+
+#: project_manager_app/templates/project/list.html:7
+msgid "My Projects"
+msgstr "مشاريعي"
+
+#: project_manager_app/templates/project/list.html:11
+msgid "new project"
+msgstr "مشروع جديد"
+
+#: project_manager_app/templates/project/list.html:50
+msgid "Edit"
+msgstr "تعديل"
+
+#: project_manager_app/templates/project/list.html:72
+msgid "There are no projects also you can "
+msgstr "لا يوجد مشاريع بالطبع يمكنك "
+
+#: project_manager_app/templates/project/list.html:72
+msgid "create project"
+msgstr "انشاء مشروع"
+
+#: project_manager_app/templates/project/list.html:93
+#: project_manager_app/templates/project/list.html:105
+msgid "previous"
+msgstr "السابق"
+
+#: project_manager_app/templates/project/list.html:117
+#: project_manager_app/templates/project/list.html:126
+msgid "next"
+msgstr "التالي"
+
+#: project_manager_app/templates/project/task.html:42
+msgid "new task"
+msgstr "مهمة جديدة "
+
+#: project_manager_app/templates/project/task.html:43
+msgid "add"
+msgstr "اضافة"
+
+#: project_manager_app/templates/project/update.html:52
+msgid "save"
+msgstr "حفظ"
+
+#: project_manager_app/templates/project/update.html:56
+msgid "delete"
+msgstr "حذف"

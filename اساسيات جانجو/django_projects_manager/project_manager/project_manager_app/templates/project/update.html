@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load humanize %}
+{% load i18n %}
+
+<h1 dir="auto">{{object.title}}</h1>
+<!-- <form method="post">
+
+    {% csrf_token %}
+
+    {{form}}
+
+    <input type="submit" value="Submit"/>
+
+</form>
+    <a href="{% url 'project_delete' object.id %}">delete</a>
+
+
+
+ -->
+
+
+<div class="row">
+    <div class="col-md-3">
+        <form method="post">
+            {%csrf_token%}
+            <div class="card">
+                <div class="card-body">
+                    {% for field in form %}
+                    <div class="mb-3">
+                        {{field}}
+                    </div>
+                    {%endfor%}
+                    <div class="d-flex mt-2">
+
+                        <span class="me-auto text-muted small">
+                            <i class="bi bi-clock"></i>
+                            <time datetime="{{object.created_at}}">
+                                {{object.created_at|naturaltime}}
+
+                            </time>
+
+
+
+                        </span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success">
+                            <i class="bi bi-save"></i>
+                            {% trans 'save' %}
+                        </button>
+                        <button class="btn btn-dangerd">
+                            <i class="bi bi-trash"></i>
+                            {% trans 'delete' %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-9">
+        {% include 'project/task.html' with project=object %}
+
+    </div>
+    </div>
+
+</div>
+<style>
+    .bi-trash,.btn-dangerd{
+        color: red;
+    }
+
+</style>
+
+
+{% endblock %}

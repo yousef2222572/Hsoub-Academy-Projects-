@@ -1,0 +1,366 @@
+{% extends 'base.html' %}
+{% load i18n my_filters %}
+
+{% block content %}
+
+    <div class="container my-5">
+      <section>
+        <div class="card mb-3">
+          <div class="row g-0">
+
+
+
+
+
+
+          <div class="col-md-5" id="product-gallery-container">
+            <div class="product-gallery">
+
+              <!-- Main image -->
+              <div class="swiper mySwiper2 product-main-swiper">
+                <div class="swiper-wrapper">
+
+                  <div class="swiper-slide">
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" title="" width="150" class="img-thumbnail" />
+
+                  </div>
+
+                  <div class="swiper-slide">
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" title="" width="150" class="img-thumbnail" />
+
+                  </div>
+
+                  <div class="swiper-slide">
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" title="" width="150" class="img-thumbnail" />
+
+                  </div>
+
+                  <div class="swiper-slide">
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" title="" width="150" class="img-thumbnail" />
+
+                  </div>
+
+
+                </div>
+
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+
+
+              <!-- Thumbnails -->
+              <div thumbsSlider class="swiper mySwiper product-thumbs-swiper">
+                <div class="swiper-wrapper">
+
+                  <div class="swiper-slide">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" title="" width="150" class="img-thumbnail" />
+                  </div>
+
+                  <div class="swiper-slide">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" title="" width="150" class="img-thumbnail" />
+                  </div>
+
+                  <div class="swiper-slide">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" title="" width="150" class="img-thumbnail" />
+                  </div>
+
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+<style>
+    .product-gallery {
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+        max-width: 650px;
+        min-height: 250px;
+    }
+
+    #product-gallery-container {
+        width: 100%;
+        max-width: 650px;
+        margin-right: auto;
+    }
+
+    /* =========================
+       Main Product Image
+       ========================= */
+
+    .product-main-swiper {
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 0;
+        aspect-ratio: 1 / 1;
+        min-height: 250px;
+        max-height: 520px;
+
+        border-radius: 10px;
+        overflow: hidden;
+        background: #f8f8f8;
+    }
+
+    .product-main-swiper .swiper-wrapper,
+    .product-main-swiper .swiper-slide {
+        width: 100%;
+        height: 100%;
+        border: solid 1px #f8f8f8;
+
+    }
+
+    .product-main-swiper .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: black;
+
+        border-radius: 10px;
+
+    }
+
+    .product-main-swiper .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain;
+    }
+
+
+    /* =========================
+       Thumbnails
+       ========================= */
+
+    .product-thumbs-swiper {
+        width: 72px;
+        height: 100%;
+        flex: 0 0 72px;
+    }
+
+    .product-thumbs-swiper .swiper-wrapper {
+        height: 100%;
+    }
+
+    .product-thumbs-swiper .swiper-slide {
+        width: 72px !important;
+        height: 60px !important;
+
+        opacity: 0.55;
+        border: 2px solid transparent;
+        border-radius: 7px;
+        overflow: hidden;
+        box-sizing: border-box;
+        cursor: pointer;
+        background: #f8f8f8;
+    }
+
+    .product-thumbs-swiper .swiper-slide-thumb-active {
+        opacity: 1;
+        border-color: #6c757d;
+    }
+
+    .product-thumbs-swiper .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        
+    }
+
+
+    @media (max-width: 991.98px) {
+
+        .product-gallery {
+            max-width: 100%;
+        }
+
+        .product-main-swiper {
+            min-height: 280px;
+        }
+    }
+
+
+
+
+    @media (max-width: 767.98px) {
+
+        .product-gallery {
+            gap: 10px;
+            max-width: 100%;
+            min-height: 0;
+        }
+
+        .product-main-swiper {
+            min-height: 260px;
+        }
+
+        .product-thumbs-swiper {
+            width: 60px;
+            flex-basis: 60px;
+        }
+
+        .product-thumbs-swiper .swiper-slide {
+            width: 60px !important;
+            height: 52px !important;
+        }
+    }
+
+
+
+    @media (max-width: 400px) {
+
+        .product-gallery {
+            gap: 8px;
+        }
+
+        .product-main-swiper {
+            min-height: 240px;
+        }
+
+        .product-thumbs-swiper {
+            width: 52px;
+            flex-basis: 52px;
+        }
+
+        .product-thumbs-swiper .swiper-slide {
+            width: 52px !important;
+            height: 48px !important;
+        }
+    }
+        /* =========================
+       Modern Navigation Arrows
+       ========================= */
+      .product-main-swiper .swiper-button-next,
+      .product-main-swiper .swiper-button-prev {
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+
+          background: rgba(255, 255, 255, 0.9);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          border-radius: 10px;
+          overflow: hidden;
+      }
+
+      .product-main-swiper .swiper-button-next:hover,
+      .product-main-swiper .swiper-button-prev:hover {
+          transform: scale(1.05);
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+      }
+
+      .product-main-swiper .swiper-button-next::after,
+      .product-main-swiper .swiper-button-prev::after {
+          font-size: 13px;
+          font-weight: 700;
+          color: #333;
+      }
+
+      .product-main-swiper .swiper-button-next {
+          right: 10px;
+      }
+
+      .product-main-swiper .swiper-button-prev {
+          left: 10px;
+      }
+              .product-main-swiper .swiper-button-next svg,
+        .product-main-swiper .swiper-button-prev svg {
+            display: none !important;
+            content: none !important;
+        }
+</style>
+
+
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css"
+          />
+
+          <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.js"></script>
+
+          <script>
+            var swiper = new Swiper(".mySwiper", {
+              direction: "vertical",
+              loop: true,
+              spaceBetween: 10,
+              slidesPerView: 5,
+              freeMode: true,
+              watchSlidesProgress: true,
+            });
+
+            var swiper2 = new Swiper(".mySwiper2", {
+              loop: true,
+              spaceBetween: 10,
+              navigation: {
+                  nextEl: ".product-main-swiper .swiper-button-next",
+                  prevEl: ".product-main-swiper .swiper-button-prev",
+              },
+
+              thumbs: {
+                swiper: swiper,
+              },
+            });
+          </script>
+
+
+            <div class="col-md-5">
+
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text mt-4">
+                    {{ product.short_description }}
+                </p>
+                <p class="card-text fs-4">
+                  <strong class="text-success mt-3"> {{ product.price|currency }} </strong>
+                </p>
+                <button class="btn btn-secondary" data-url="{% url 'store.cart_add' product.id %}" onClick="cartUpdate(this)">
+                  {% trans 'Add to cart' %}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="card">
+          <div class="card-header p-0 bg-white">
+            <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active text-secondary" id="pills-home-tab" data-bs-toggle="pill"
+                  data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                    {% trans 'Description' %}
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link text-secondary" id="pills-profile-tab" data-bs-toggle="pill"
+                  data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                  aria-selected="false">
+                  {% trans 'seller' %}
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <p class="fs-6 text-muted">
+                    {{ product.description }}
+                </p>
+              </div>
+              <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-contact-tab">
+                <p class="fs-6 text-muted">{{ product.Vendor.name }}</p>
+                <p class="fs-6 text-muted">
+                    {{ product.Vendor.bio }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!-- أضفنا class="swiper" و dir="rtl" لضمان عدم حدوث مشاكل عند السحب -->
+<div class="swiper main-slider my-auto" dir="rtl">
+      
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+          {% for slide in slides %}
+            <div class="swiper-slide">
+              <div class="container pt-5">
+                <div class="row">
+                  <div class="col-md-4 text-center d-none d-lg-block">
+                    <img src="{{ slide.image.url }}" alt="{{ slide.title }}" class="img-fluid rounded" />
+                  </div>
+                  <div class="col-md-8">
+                    <h1 class="text-secondary">
+                      اجعل صيفك أكثر متعة مع مسابحنا
+                    </h1>
+                    <blockquote class="blockquote mt-4">
+                      <p class="text-muted">
+                        اكتشف عالمًا من المتعة والانتعاش مع Intex Pools، وجهتك للحصول على مسابح ومنتجات INTEX المصممة لتمنحك تجربة صيفية مميزة في المنزل. اختر من مجموعة متنوعة من المسابح والمنتجات المناسبة للعائلة والأطفال، واستمتع بأوقات مليئة بالمرح والاسترخاء دون الحاجة إلى مغادرة منزلك.
+
+                        نحرص على توفير منتجات موثوقة بجودة عالية وتصاميم متنوعة تناسب احتياجاتك ومساحتك، مع تجربة تسوق سهلة وسريعة تساعدك على الوصول إلى ما تبحث عنه بكل سهولة.
+
+                        لا تجعل حرارة الصيف تمنعك من الاستمتاع بوقتك — اختر مسبحك الآن وابدأ صيفًا مليئًا بالانتعاش والمتعة مع INTEX.
+
+                        تسوق الآن واستعد لصيف مختلف!
+                      </p>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+      </div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const swiper = new Swiper('.main-slider', {
+      loop: true,          
+      autoplay: {
+        delay: 4000,       
+        disableOnInteraction: false, 
+      },
+    });
+  });
+</script>

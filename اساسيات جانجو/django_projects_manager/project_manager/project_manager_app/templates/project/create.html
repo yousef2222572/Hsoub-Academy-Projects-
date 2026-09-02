@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="conteinar">
+    <div class="row justify-content-md-center">
+        <div class="card col-md-6 px-0">
+            <div class="card-header">
+                <h3 class="mb-0 py-2">
+                    {% trans 'New Project' %}
+
+                </h3>
+
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    {% include 'common/form.html' with form=form  %}
+                    <button class="btn btn-success">
+                        Create Project
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,150 @@
+import sqlite3
+import datetime
+
+
+qlite = sqlite3.connect("tasks.db")
+
+cursor= qlite.cursor()
+new_table = """CREATE TABLE IF NOT EXISTS tasks (
+    id INTEGER PRIMARY KEY,
+    title VARCHAR(20),
+    description TEXT,
+    completed BOOLEAN DEFAULT FALSE,
+    date TEXT
+    )"""
+    
+cursor.execute(new_table)
+while True:
+        
+    latter=input('welcome to as app just use the latter to do any thing form the choices "a"\n to add a task ,"d"\n to delete a task ,"s"\n to show all tasks ,"u"\n to add update a task ,"q"\n to quit the app \n write here : ')
+        
+    if latter == "a":
+        title=input('enter task title')
+        description=input('enter task description')
+        data_set = """
+        INSERT INTO tasks (title, description, date)
+        VALUES (?, ?, ?)
+        """
+        date = datetime.datetime.now()
+        
+
+        cursor.execute(data_set, (title, description, date))
+        
+        
+        
+        cursor.execute("SELECT * FROM tasks ORDER BY id DESC LIMIT 1")
+        task = cursor.fetchone()
+        status='pinding'
+        if task[3] : 
+            status='complte'
+            
+        print(f'the task was created \n title : {task[1]} \n description : {task[2]}\n status : {status}')
+        qlite.commit()
+
+    elif latter == "d":
+        cursor.execute("SELECT * FROM tasks  ")
+
+        tasks = cursor.fetchall()
+
+        for task in tasks:
+            status='pinding'
+                
+            if task[3] : 
+                status='complte'
+            print(f'{task[0]} : title : {task[1]} | descripti : {task[2]} | status : {status}')
+
+
+        task_id=input('enter the task id to delete it')
+        
+        cursor.execute("DELETE FROM tasks WHERE id = ?", (task_id,))
+        
+        if cursor.rowcount :
+            print('task was deleted')
+            input('press enter to back the home page')
+            
+        else:
+            print('task not found')
+            input('press enter to back the home page')
+            
+        qlite.commit()
+            
+    elif latter == "s":
+
+        cursor.execute("SELECT * FROM tasks  ")
+
+        tasks = cursor.fetchall()
+
+        for task in tasks:
+            status='pinding'
+                
+            if task[3] : 
+                status='complte'
+            print(f'{task[0]} : title : {task[1]} | descripti : {task[2]} | status : {status}')
+            
+        input('enter to back the home page')
+
+    elif latter == "u":
+
+        
+        cursor.execute("SELECT * FROM tasks  ")
+
+        tasks = cursor.fetchall()
+
+        for task in tasks:
+            status='pinding'
+                
+            if task[3] : 
+                status='complte'
+            print(f'{task[0]} : title : {task[1]} | descripti : {task[2]} | status : {status}')
+            
+        task_id=input('enter the task id to edit it')
+        
+        print('note press enter to ignore the edit in the one filed and enter q to quit from update task ')
+        
+        cursor.execute("SELECT * FROM tasks WHERE id = ?", (task_id,))
+        old_task_info=cursor.fetchone()
+        
+        
+        
+        check=True
+        title=input('enter the new title here : ')
+        if title == "q":
+            continue
+        if title == '':
+            title=old_task_info[1]
+        
+        description=input('enter the new descrption here : ')
+        if description == '':
+            description=old_task_info[3]
+        
+
+        status=input('enter 1 to make the task completed or 0 to to make it pinding ')
+        if status == '':
+            status=old_task_info[1]
+            check=False
+        
+        if check:
+            status = int(status)
+
+            if status not in (0, 1):
+                print("invalid value")
+                continue
+                    
+            else:
+                
+                print('enter a unvalid value')
+                continue
+
+        cursor.execute("""
+            UPDATE tasks
+            SET title = ?, description = ?, completed = ?
+            WHERE id = ?
+        """, (title, description, status, task_id))
+        
+        qlite.commit()
+                    
+
+        
+    elif latter == "q":
+
+        break

@@ -1,0 +1,179 @@
+{% load i18n %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+    <div class="container">
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {% if user.is_authenticated %}
+        <div class="d-flex ms-auto align-items-center">
+            <div class="dropdown me-2">
+                <button
+                    class="btn btn-secondary dropdown-toggle header-original-button"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    {{ user.username }}
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="dropdownMenuButton">
+
+                    <li>
+                        <a class="dropdown-item" href="{% url 'profile' %}">
+                            Profile
+                        </a>
+                    </li>
+
+                    <li>
+                      <form method="post" action="{% url 'logout' %}">
+                          {% csrf_token %}
+                          <button type="submit" class="dropdown-item">
+                              Logout
+                          </button>
+                      </form>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            change password
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            forgot password
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            
+        </div>
+        
+
+        
+        <a href="{% url 'store.cart' %}" class="btn btn-outline-dark header-original-button" type="button">
+          (<span id="cart-items-count">{{ cart_products|length }}</span>)  
+          <i class="lni lni-cart fs-5 text-black flip-horizontal"></i>
+        </a>
+
+                
+      {% else %}
+
+
+
+
+      <a href="{% url 'Register' %}" class="btn auth-button">
+        {% trans 'logup' %}
+      </a>
+
+      <a href="{% url 'login_form' %}" class="btn auth-button ms-2">
+        {% trans 'login' %}
+      </a>
+
+      {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <style>
+          .flip-horizontal {
+            display: inline-block;
+            transform: scaleX(-1);
+          }
+        </style>
+        
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse mt-2 mt-lg-0" id="navbarSupportedContent">
+        {% include 'partials/header_search.html' %}
+        <ul class="navbar-nav my-2 my-lg-0">
+          <a class="navbar-brand" href="/">{% trans 'pool store' %}</a>
+
+          <li class="nav-item">
+            
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+<nav class="navbar navbar-expand-lg navbar-light btn-color">
+    <div class="container">
+      <div class="collapse navbar-collapse mt-2 mt-lg-0" id="navbarSupportedContent">
+        <ul class="navbar-nav my-2 my-lg-0">
+            {% for category in categories %}
+              <li class="nav-item">
+                <a class="nav-link white-color mx-1" href="{% url 'store.category' category.id %}" role="button">
+                  {{ category.name }}
+                </a>
+              </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+{% include 'partials/slider.html' with slides=slides %}
+
+    <div class="container my-5">
+      <section>
+        <div class="col-md-12 mb-5">
+          <p class="h1 text-center text-secondary">{% trans 'featured products' %}</p>
+        </div>
+        <div class="row" id="products-container" >
+            {% for product in products %}
+            <div class="col-6 col-md-3">
+
+                {% include 'common/product_card.html' with product=product %}
+              </div>
+            {% endfor %}
+            <button class="btn btn-outline-primary mx-auto d-block mt-4" onclick="window.location.href='{% url 'store.category' %}'">
+                see all 
+            </button>
+        </div>
+      </section>
+    </div>
+{% endblock %}

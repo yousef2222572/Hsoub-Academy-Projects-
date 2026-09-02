@@ -1,0 +1,53 @@
+{% extends 'home.html' %}
+{% block content %}
+
+
+    <br>
+    <br>
+    <br>
+    <div id="articles_conte">
+
+
+        <h1 class="display-5 my-3">
+            Articles 
+        </h1>
+
+        {% for d in object_list %}
+            <div class="card my-2">
+                <div class="card-body">
+                    <div class="card-title">{{d.title}} , {{d.author.name}}</div>
+
+                    <div class="card-text">{{d.content}} <br> {{d.author.email}} <br> 
+                    
+                    
+                        {% for tag in d.tag.all %}
+                            <span class="content">tag : </span>{{tag.name}} 
+                        {% endfor %}
+                    
+                    </div>
+                    
+
+                    <a href="{% url 'article_view' d.id  %}" class="btn btn-primary btn-sm">view</a>
+                    <a href="{% url 'update_article' d.id  %}" class="btn btn-secondary btn-sm" >update</a>
+                    
+        
+
+
+        
+                            
+                </div>
+
+
+                    
+            </div>        
+                    
+                {% endfor %}
+                <a href="{% url 'create_article'   %}">create article</a>
+                <a href="{% url 'create_author'   %}">create author</a>
+
+
+    </div>
+
+    
+
+{% endblock content %}

@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load i18n my_filters %}
+
+{% block content %}
+    {% include 'common/page_title.html' with title='Cart' %}
+    <div class="container my-5">
+        {% for product in cart_products %}
+          <div class="card my-2">
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-md-3">
+                  {% include 'common/product_card_cart.html' with product=product %}
+                </div>
+
+                <div class="col my-auto text-center">
+                  {{ product.name }}
+                </div>
+                <div class="col-md-2 col-xs-6 my-auto text-center">
+                  <strong id="{{ product.id }}">{{ cart_model.items }}</strong>
+                </div>
+                <div class="col-md-4 my-auto d-flex align-items-center justify-content-center gap-2">
+                  <div class="quantity-control d-flex align-items-center border rounded-3 bg-white shadow-sm overflow-hidden"
+                      style="width: 120px; height: 40px;">
+                      <form class="cart-update-form" action="{% url 'store.cart_update'  %}" method="post">
+                        {% csrf_token %}
+
+
+                        <input type="hidden" name="pid" value="{{ product.id }}">
+                          <input type="hidden" name="sign" class="quantity-sign">
+                      </form>
+                      
+                      
+                      
+                      <button id="" class="btn quantity-button minus-button" type="button"  aria-label="Decrease quantity">
+                        <i class="lni lni-minus"></i>
+                      </button>
+                      
+                      <button    id="qu_{{product.id}}"  class="form-control form-control-sm text-center border-0 quantity-display shadow-none fw-semibold p-0"value="1"min="1"></button>
+                  
+                  
+                    <button  class="btn quantity-button  plus-button" type="button"  aria-label="Increase quantity">
+                      <i class="lni lni-plus"></i>
+                    </button>
+                  </div>
+
+
+                  <button id="trash1" class="btn btn-sm my-2 cart-remove-btn" style="border: solid 1px black;"
+                          type="button"
+                          data-url="{% url 'store.cart_remove' product.id %}"
+                          onclick="cartRemove(this)"
+                          aria-label="Remove product">
+                    <i class="lni lni-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="h-100 p-5 bg-white border rounded-3 text-center">
+            <p class="fs-1">{% trans 'Your cart is empty' %}</p>
+            <p>
+              <i class="lni lni-cart fs-1 text-muted"></i>
+            </p>
+          </div>
+        {% endfor %}
+        {% if cart_total > 0 %}
+          <div class="row bd-highlight">
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table table-striped">
+                    <tbody>
+                      <tr>
+                        <td>{% trans 'Price' %}</td>
+                        <td>{{ cart_total|currency }}</td>
+                      </tr>
+                      <tr>
+                        <td>{% trans 'Total' %}</td>
+                        <td>{{ cart_total|currency }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="d-grid gap-2">
+                    <a href="{% url 'store.checkout' %}" class="btn btn-primary">
+                      {% trans 'Processed to checkout' %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+    </div>
+{{ cart_model.items|json_script:"cart-data" }}
+
+<script>
+    const cartItems = JSON.parse(
+        document.getElementById("cart-data").textContent
+    );
+
+    for (const [key, value] of Object.entries(cartItems)) {
+
+      document.getElementById(key).textContent=value.total_price
+      document.getElementById(`qu_${key}`).textContent = value.quantity;
+    }
+
+
+
+</script>
+<style>
+.quantity-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.quantity-button {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-input {
+  flex: 0 0 2.25rem;
+  width: 2.25rem !important;
+  min-width: 2.25rem;
+  max-width: 2.25rem;
+  height: 2.25rem !important;
+  min-height: 2.25rem;
+  max-height: 2.25rem;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.quantity-control {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quantity-control:focus-within {
+    border-color: #adb5bd !important;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.quantity-control .btn {
+    background: transparent;
+    line-height: 1;
+}
+
+.quantity-control .btn:hover {
+    background-color: #f8f9fa;
+    color: #212529 !important;
+}
+
+.quantity-control input {
+    min-width: 0;
+    background: transparent;
+    font-size: 14px;
+}
+
+.quantity-control input::-webkit-inner-spin-button,
+.quantity-control input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-control input[type="number"] {
+    appearance: textfield;
+}
+</style>
+
+<script>
+
+document.querySelectorAll(".quantity-control").forEach(control => {
+
+    const plusButton = control.querySelector(".plus-button");
+    const minusButton = control.querySelector(".minus-button");
+
+    const quantityDisplay = control.querySelector(".quantity-display");
+
+    const form = control.querySelector(".cart-update-form");
+    const signInput = control.querySelector(".quantity-sign");
+
+
+    [plusButton, minusButton].forEach(button => {
+
+        button.addEventListener("click", async (e) => {
+
+            e.preventDefault();
+
+
+
+            let sign=true
+
+            if (button === minusButton) {
+
+              sign=false
+                
+
+            } else {
+
+                  sign=true
+                    
+
+            }
+
+
+            // quantityInput.value = quantity;
+            signInput.value = sign;
+
+
+            const formData = new FormData(form);
+
+
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: formData
+            });
+
+            
+            const data = await response.json();
+            
+            
+            if (data.status === "success") {
+
+                const productId=data.product_id 
+                const priceElement = document.getElementById(productId);
+              
+                priceElement.textContent = data.total_price + "$"
+                quantityDisplay.textContent = data.quantity;
+                notyf.success({
+                    message: "Cart updated successfully",
+                    duration: 3000,
+                    dismissible: true,
+                    icon: false
+                });
+
+            }
+
+        });
+
+    });
+
+});
+
+function change (button, amount) {
+    const control = button.closest(".quantity-control");
+    const input = control.querySelector("input");
+
+    let quantity = parseInt(input.value) || 1;
+    quantity += amount;
+
+    input.value = Math.max(1, quantity);
+}
+</script>
+
+{% endblock %}
